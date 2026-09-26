@@ -379,6 +379,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
                       <img
                         src={preset.url}
                         alt={preset.label}
+                        referrerPolicy="no-referrer"
                         className="w-12 h-12 rounded-xl object-cover"
                       />
                       <span className="text-[10px] font-headline font-semibold text-[#0f1e1a] truncate w-full">

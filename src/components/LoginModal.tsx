@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { StudentUser } from '../types';
 import { INITIAL_STUDENTS } from '../initialData';
 import { svuApi } from '../services/api';
+import { DEFAULT_SVU_LOGO, DEFAULT_CAMPUS_BANNER } from '../utils/imageFallback';
 import { StudentAvatar } from './StudentAvatar';
 
 interface LoginModalProps {
@@ -207,6 +208,11 @@ export const LoginModal: React.FC<LoginModalProps> = ({
             alt="SVU Campus Building"
             className="w-full h-full object-cover opacity-60 mix-blend-overlay"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRGb1BZyv3_1wLirO3YcvIeXfeGXLwz0KO-xS6NjT6PxOedqFSNyOnwZuoAg83pfGNqMDGr_8-mcxxZCRkYWO9r5Q8keWhOcrVv1D_5hWq2JrQ8m9wegE4RmBHOlbAq80o4flMjdPB7jgbgcv0aQb-G6XHUp6p5Uef2g7loGo6swRzC6wfb0ewzA0ePA4oQ8s3pNNQ2r5EDyZCrzCQN4ihIKYWDwmRT5jjr4Hr-IxWxYcyCuJBDJs2dupFLyBmowhyRSEdoTiJtG53Tw"
+            referrerPolicy="no-referrer"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = DEFAULT_CAMPUS_BANNER;
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#ecfdf6] via-[#0d4a36]/60 to-transparent"></div>
 
@@ -217,6 +223,11 @@ export const LoginModal: React.FC<LoginModalProps> = ({
                 alt="SVU Crest"
                 className="w-6 h-6 object-contain"
                 src="https://lh3.googleusercontent.com/aida/AEtjO1WiiBJPJHWOp9w12qrIJVV3UaTpWFl6cuxiFIzhwUevQXy42Db6LEpA-TCF1H6UE6kVlv0qCTP3FwyCySta5Eu7QfvmH3I4-bhsN_3g2vKU0H9GK9Uc97cmTP4bcw611TINsRhQq14WtroA7WJu20zSshRzc89UFqlW3VdmyoEUubyxUer7SEOVU4c3x3jUAC8kvfar691QPwcRjb_AQpkCaoRYrVj-QZyvL4VcSEynvV-dPFu_0m2XejcqL2Jz13B8JsylSyvzKw"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = DEFAULT_SVU_LOGO;
+                }}
               />
               <span className="font-headline text-[10px] text-[#003222] tracking-wider uppercase font-bold">
                 SVU Portal

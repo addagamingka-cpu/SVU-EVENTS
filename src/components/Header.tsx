@@ -1,6 +1,7 @@
 import React from 'react';
 import { StudentUser } from '../types';
 import { StudentAvatar } from './StudentAvatar';
+import { DEFAULT_SVU_LOGO } from '../utils/imageFallback';
 
 interface HeaderProps {
   currentUser: StudentUser | null;
@@ -28,6 +29,11 @@ export const Header: React.FC<HeaderProps> = ({
             alt="Swami Vivekananda University Logo"
             className="h-9 w-auto object-contain shrink-0"
             src="https://lh3.googleusercontent.com/aida/AEtjO1WiiBJPJHWOp9w12qrIJVV3UaTpWFl6cuxiFIzhwUevQXy42Db6LEpA-TCF1H6UE6kVlv0qCTP3FwyCySta5Eu7QfvmH3I4-bhsN_3g2vKU0H9GK9Uc97cmTP4bcw611TINsRhQq14WtroA7WJu20zSshRzc89UFqlW3VdmyoEUubyxUer7SEOVU4c3x3jUAC8kvfar691QPwcRjb_AQpkCaoRYrVj-QZyvL4VcSEynvV-dPFu_0m2XejcqL2Jz13B8JsylSyvzKw"
+            referrerPolicy="no-referrer"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = DEFAULT_SVU_LOGO;
+            }}
           />
           <div className="flex flex-col min-w-0">
             <span className="font-headline text-[10px] tracking-wider text-[#855300] uppercase font-bold truncate">

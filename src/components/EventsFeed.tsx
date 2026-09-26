@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { CampusEvent, EventCategory } from '../types';
+import { DEFAULT_CAMPUS_BANNER } from '../utils/imageFallback';
 
 interface EventsFeedProps {
   events: CampusEvent[];
@@ -302,10 +303,17 @@ export const EventsFeed: React.FC<EventsFeedProps> = ({
               className="relative w-full rounded-2xl overflow-hidden shadow-lg bg-[#24332f] text-white cursor-pointer group transition-transform active:scale-[0.99]"
             >
               {/* Fest Scrim & Image Container */}
-              <div
-                className="relative w-full h-64 bg-cover bg-center flex flex-col justify-between p-4"
-                style={{ backgroundImage: `url("${liveSpotlight.bannerImage}")` }}
-              >
+              <div className="relative w-full h-64 bg-[#0d4a36] flex flex-col justify-between p-4 overflow-hidden">
+                <img
+                  src={liveSpotlight.bannerImage || DEFAULT_CAMPUS_BANNER}
+                  alt={liveSpotlight.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = DEFAULT_CAMPUS_BANNER;
+                  }}
+                />
                 {/* Gradient Scrim Overlays */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/25"></div>
 
@@ -447,10 +455,17 @@ export const EventsFeed: React.FC<EventsFeedProps> = ({
                   className="rounded-2xl bg-white p-4 shadow-sm border border-[#003222]/8 flex flex-col gap-3 hover:shadow-md transition-shadow cursor-pointer"
                 >
                   {/* Banner Image */}
-                  <div
-                    className="relative w-full h-36 rounded-xl bg-cover bg-center overflow-hidden flex flex-col justify-between p-3"
-                    style={{ backgroundImage: `url("${event.bannerImage}")` }}
-                  >
+                  <div className="relative w-full h-36 rounded-xl bg-[#0d4a36] overflow-hidden flex flex-col justify-between p-3">
+                    <img
+                      src={event.bannerImage || DEFAULT_CAMPUS_BANNER}
+                      alt={event.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = DEFAULT_CAMPUS_BANNER;
+                      }}
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#003222]/90 via-[#003222]/30 to-transparent"></div>
                     
                     <div className="relative z-10 flex items-center justify-between">

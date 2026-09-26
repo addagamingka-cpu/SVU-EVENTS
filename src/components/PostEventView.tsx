@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CampusEvent, EventCategory, StudentUser } from '../types';
 import { CAMPUS_VENUES } from '../initialData';
+import { DEFAULT_CAMPUS_BANNER, HACKATHON_BANNER } from '../utils/imageFallback';
 
 interface PostEventViewProps {
   currentUser: StudentUser;
@@ -370,6 +371,11 @@ export const PostEventView: React.FC<PostEventViewProps> = ({
                 src={bannerPreview}
                 alt="Banner preview"
                 className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-300"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = DEFAULT_CAMPUS_BANNER;
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#003222]/90 via-[#003222]/30 to-transparent flex flex-col justify-end p-3">
                 <div className="flex items-center justify-between gap-2">
@@ -402,6 +408,20 @@ export const PostEventView: React.FC<PostEventViewProps> = ({
             {/* Quick banner presets */}
             <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
               <span className="text-[11px] text-[#707974] shrink-0 font-medium">Quick Presets:</span>
+              <button
+                type="button"
+                onClick={() => handleQuickPreset(DEFAULT_CAMPUS_BANNER)}
+                className="px-2 py-1 bg-[#003222] text-white rounded-md text-[10px] font-bold shrink-0"
+              >
+                ★ SVU Official Fest
+              </button>
+              <button
+                type="button"
+                onClick={() => handleQuickPreset(HACKATHON_BANNER)}
+                className="px-2 py-1 bg-[#e0f2eb] rounded-md text-[10px] font-bold text-[#003222] hover:bg-[#dbece5] shrink-0"
+              >
+                ⚡ Hackathon Matrix
+              </button>
               <button
                 type="button"
                 onClick={() => handleQuickPreset('https://lh3.googleusercontent.com/aida-public/AB6AXuCRGb1BZyv3_1wLirO3YcvIeXfeGXLwz0KO-xS6NjT6PxOedqFSNyOnwZuoAg83pfGNqMDGr_8-mcxxZCRkYWO9r5Q8keWhOcrVv1D_5hWq2JrQ8m9wegE4RmBHOlbAq80o4flMjdPB7jgbgcv0aQb-G6XHUp6p5Uef2g7loGo6swRzC6wfb0ewzA0ePA4oQ8s3pNNQ2r5EDyZCrzCQN4ihIKYWDwmRT5jjr4Hr-IxWxYcyCuJBDJs2dupFLyBmowhyRSEdoTiJtG53Tw')}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CampusEvent, StudentPass, StudentUser } from '../types';
 import { StudentAvatar } from './StudentAvatar';
+import { DEFAULT_SVU_LOGO, DEFAULT_CAMPUS_BANNER } from '../utils/imageFallback';
 
 interface EventDetailsModalProps {
   event: CampusEvent;
@@ -67,6 +68,11 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
               alt="SVU Crest"
               className="h-7 w-auto object-contain shrink-0"
               src="https://lh3.googleusercontent.com/aida/AEtjO1WiiBJPJHWOp9w12qrIJVV3UaTpWFl6cuxiFIzhwUevQXy42Db6LEpA-TCF1H6UE6kVlv0qCTP3FwyCySta5Eu7QfvmH3I4-bhsN_3g2vKU0H9GK9Uc97cmTP4bcw611TINsRhQq14WtroA7WJu20zSshRzc89UFqlW3VdmyoEUubyxUer7SEOVU4c3x3jUAC8kvfar691QPwcRjb_AQpkCaoRYrVj-QZyvL4VcSEynvV-dPFu_0m2XejcqL2Jz13B8JsylSyvzKw"
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = DEFAULT_SVU_LOGO;
+              }}
             />
             <div className="flex flex-col min-w-0">
               <span className="font-headline text-[10px] text-[#855300] truncate uppercase font-bold tracking-wider">
@@ -125,7 +131,12 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
             <img
               alt={event.title}
               className="w-full h-full object-cover"
-              src={event.bannerImage}
+              src={event.bannerImage || DEFAULT_CAMPUS_BANNER}
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = DEFAULT_CAMPUS_BANNER;
+              }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#003222]/95 via-[#003222]/40 to-transparent"></div>
 
@@ -283,6 +294,11 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                   className="w-full h-full object-cover"
                   alt="SVU Campus Amphitheatre"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRGb1BZyv3_1wLirO3YcvIeXfeGXLwz0KO-xS6NjT6PxOedqFSNyOnwZuoAg83pfGNqMDGr_8-mcxxZCRkYWO9r5Q8keWhOcrVv1D_5hWq2JrQ8m9wegE4RmBHOlbAq80o4flMjdPB7jgbgcv0aQb-G6XHUp6p5Uef2g7loGo6swRzC6wfb0ewzA0ePA4oQ8s3pNNQ2r5EDyZCrzCQN4ihIKYWDwmRT5jjr4Hr-IxWxYcyCuJBDJs2dupFLyBmowhyRSEdoTiJtG53Tw"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = DEFAULT_CAMPUS_BANNER;
+                  }}
                 />
                 <div className="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-[#003222]/80 backdrop-blur-sm text-white font-headline text-[11px] font-semibold">
                   {event.venueName}
