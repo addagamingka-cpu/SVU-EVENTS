@@ -1,0 +1,6 @@
+{
+  "name": "SVU Campus Pulse",
+  "description": "Live and upcoming college events, fests, hackathons, and digital passes for Swami Vivekananda University students.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
